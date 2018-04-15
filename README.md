@@ -7,14 +7,5 @@
 
 ### how to start
 
-#### dev
-
-```bash
-// 启动前端项目
-cd fontend
-npm run start
-
-// 启动后端
-cd backend
-npm run dev
-```
+* [前端项目](/packages/fontend/README.md)
+* [后端项目](/packages/backend/README.md)
