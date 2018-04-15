@@ -1,8 +1,6 @@
 "use strict";
 
 import { EggAppConfig, PowerPartial } from "egg";
-import * as fs from "fs";
-import * as path from "path";
 
 // for config.{env}.ts
 export type DefaultConfig = PowerPartial<EggAppConfig & BizConfig>;
@@ -17,23 +15,22 @@ export interface BizConfig {
   wxToken: string;
   appID: string;
   appsecret: string;
+  middleware: Array<string>;
+  xml: Object;
 }
 
 export default (appInfo: EggAppConfig) => {
   const config = {} as PowerPartial<EggAppConfig> & BizConfig;
 
-  // app special config
-  config.sourceUrl = `https://github.com/eggjs/examples/tree/master/${
-    appInfo.name
-  }`;
-
+  config.middleware = ["xml"];
+  config.xml = {};
   // override config from framework / plugin
   config.keys = appInfo.name + "123456";
 
-  config.siteFile = {
-    "/favicon.ico": fs.readFileSync(
-      path.join(appInfo.baseDir, "app/public/favicon.png")
-    )
+  config.security = {
+    csrf: {
+      enable: false
+    }
   };
 
   return config;
