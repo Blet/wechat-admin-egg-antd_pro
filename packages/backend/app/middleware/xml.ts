@@ -29,13 +29,21 @@ export default function xmlBodyParser(options?) {
       return (raw(ctx.req, rawOptions) as any)
         .then(async str => {
           const xmlObj = await ctx.helper.xml.parseAsync(str);
-          if (process.env.NODE_ENV === "development") {
-            console.log("xml middleware:", xmlObj);
-          }
           ctx.request.body = xmlObj;
-          next();
+          await next();
+          if (ctx.request.url.indexOf("/wx") == -1) return;
+          let body = ctx.body;
+          // console.log(ctx.request);
+          ctx.body = ctx.helper.xml.stringify({
+            ToUserName: xmlObj.xml.FromUserName,
+            FromUserName: xmlObj.xml.ToUserName,
+            CreateTime: Math.floor(Date.now() / 1000),
+            ...body
+          });
         })
         .catch(next);
+    } else {
+      next();
     }
   };
 }

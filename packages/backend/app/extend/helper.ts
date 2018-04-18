@@ -61,5 +61,13 @@ export default {
       }
       return builder.buildObject(obj);
     }
+  },
+  messageSender: {
+    buildMessage(extraInfo) {
+      const baseInfo = {
+        CreateTime: Math.floor(Date.now() / 1000)
+      };
+      return { ...extraInfo, ...baseInfo };
+    }
   }
 };
