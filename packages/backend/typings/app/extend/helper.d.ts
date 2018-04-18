@@ -6,6 +6,5 @@ declare module 'egg' {
   interface IHelper {
     crypto: typeof ExtendObject.crypto;
     xml: typeof ExtendObject.xml;
-    messageSender: typeof ExtendObject.messageSender;
   }
 }
