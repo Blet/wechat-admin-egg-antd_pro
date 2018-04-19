@@ -21,7 +21,7 @@ export interface BizConfig {
 }
 
 export default (appInfo: EggAppConfig) => {
-  const config = {} as PowerPartial<EggAppConfig> & BizConfig;
+  const config = {} as DefaultConfig;
 
   config.middleware = ["xml", "wx"];
   config.xml = {};

@@ -32,7 +32,7 @@ export default function(options?) {
       } else {
         resbody = await ctx.service.wxMessage[event]();
       }
-      ctx.body = resbody;
+      ctx.body = resbody || "";
     } else {
       next();
     }

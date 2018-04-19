@@ -20,6 +20,7 @@
     "clean": "ets clean"
   },
   "dependencies": {
+    "co-wechat-api": "^3.5.0",
     "egg": "^2.6.0",
     "egg-scripts": "^2.6.0",
     "egg-view-nunjucks": "^2.2.0",
