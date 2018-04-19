@@ -31,7 +31,8 @@ export default function xmlBodyParser(options?) {
           const xmlObj = await ctx.helper.xml.parseAsync(str);
           ctx.request.body = xmlObj;
           await next();
-          if (ctx.request.url.indexOf("/wx") == -1) return;
+          if (ctx.request.url.indexOf("/wx") == -1 && ctx.method !== "POST")
+            return;
           let body = ctx.body;
           // console.log(ctx.request);
           ctx.body = ctx.helper.xml.stringify({
@@ -43,7 +44,7 @@ export default function xmlBodyParser(options?) {
         })
         .catch(next);
     } else {
-      next();
+      await next();
     }
   };
 }

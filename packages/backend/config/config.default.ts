@@ -17,13 +17,15 @@ export interface BizConfig {
   appsecret: string;
   middleware: Array<string>;
   xml: Object;
+  wx: Object;
 }
 
 export default (appInfo: EggAppConfig) => {
   const config = {} as PowerPartial<EggAppConfig> & BizConfig;
 
-  config.middleware = ["xml"];
+  config.middleware = ["xml", "wx"];
   config.xml = {};
+  config.wx = {};
   // override config from framework / plugin
   config.keys = appInfo.name + "123456";
 
